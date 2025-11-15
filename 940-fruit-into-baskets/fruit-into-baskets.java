@@ -4,7 +4,7 @@ class Solution {
         Map <Integer,Integer> map= new HashMap<>();
         int low=0;
         int n=fruits.length;
-        int res=-1;
+        int res=0;
         
         for(int high=0;high<n;high++){
             int s=fruits[high];
