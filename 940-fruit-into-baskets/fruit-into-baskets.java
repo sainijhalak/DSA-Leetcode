@@ -19,9 +19,9 @@ low++;
 
 }
 
-if(map.size()<=2){
+
     res=Math.max(res,high-low+1);
-}
+
         }
         return res;
     }
