@@ -1,69 +1,61 @@
-import java.util.*;
-
 class Solution {
     public int[] sortedSquares(int[] nums) {
-        List<Integer> pos = new ArrayList<>(); // positives
-        List<Integer> neg = new ArrayList<>(); // negatives
-
-        // Separate positives and negatives
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] >= 0)
-                pos.add(nums[i] * nums[i]); // square while adding
-            else
-                neg.add(nums[i] * nums[i]); // square while adding
+        int pos=0;
+        int neg=0;
+        for(int i=0;i<nums.length;i++){
+if(nums[i]>=0){
+    pos++;
+}
+else{
+    neg++;
+}
         }
-
-        // Handle edge cases
-        if (neg.size() == 0) {
-            int[] ans = new int[nums.length];
-            for (int i = 0; i < pos.size(); i++) ans[i] = pos.get(i);
-            return ans;
+        int []posi=new int[pos];
+        int []nega=new int[neg];
+        int n=0;
+        int p=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>=0){
+                posi[p]=nums[i]*nums[i];
+                p++; }
+                else{
+                nega[n]=nums[i]*nums[i];
+                    n++;
+                }
+           
         }
-
-        if (pos.size() == 0) {
-            Collections.reverse(neg);
-            int[] ans = new int[nums.length];
-            for (int i = 0; i < neg.size(); i++) ans[i] = neg.get(i);
-            return ans;
-        }
-
-        // Reverse negatives since their squares go decreasing → increasing
-        Collections.reverse(neg);
-
-        // Convert lists manually into arrays
-        int[] nums1 = new int[pos.size()];
-        for (int i = 0; i < pos.size(); i++) {
-            nums1[i] = pos.get(i);
-        }
-
-        int[] nums2 = new int[neg.size()];
-        for (int i = 0; i < neg.size(); i++) {
-            nums2[i] = neg.get(i);
-        }
-
-        // Merge two sorted arrays
-        int i = 0, j = 0, idx = 0;
-        int m = nums1.length, n = nums2.length;
-        int[] res = new int[m + n];
-
-        while (i < m && j < n) {
-            if (nums1[i] <= nums2[j]) {
-                res[idx++] = nums1[i++];
-            } else {
-                res[idx++] = nums2[j++];
+        Arrays.sort(nega);
+        int res[]=new int[nums.length];
+        int i=0;
+        int j=0;
+        int k=0;
+        while(k<posi.length && j<nega.length){
+            if(posi[k]<=nega[j]){
+                res[i]=posi[k];
+                k++;
+                i++;
+            }
+            else{
+                res[i]=nega[j];
+                j++;
+                i++;
             }
         }
-
-        while (i < m) {
-            res[idx++] = nums1[i++];
+        while(j<nega.length){
+            if(k>=posi.length){
+                res[i]=nega[j];
+                j++;
+                i++;
+            }
         }
-
-        while (j < n) {
-            res[idx++] = nums2[j++];
+         while(k<posi.length){
+            if(j>=nega.length){
+                res[i]=posi[k];
+                k++;
+                i++;
+            }
         }
-
         return res;
+
     }
 }
-
-    
