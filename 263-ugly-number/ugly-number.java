@@ -1,16 +1,24 @@
 class Solution {
     public boolean isUgly(int n) {
         if(n<=0) return false;
-         int[] primes = {2, 3, 5};
-         for(int p: primes){
-            while(n%p==0){
-                n/=p;
+        int s=3;
+        while(s>0){
+            while(n%2==0){
+                n=n/2;
+             
             }
-         }
-       
-    
-        
-      return n==1;
-    }
-
+           while(n%3==0){
+                n=n/3;
+              
+            }
+            while(n%5==0){
+                n=n/5;
+                
+            }
+            
+                s--;
+            
+        }
+if(n==1) return true;
+return false;    }
 }
