@@ -7,7 +7,7 @@ class Solution {
         return ans;
     }
     public int firstMissingPositive(int[] nums) {
-       if(nums.length==1 && nums[0]<=0) return 1; 
+       
        Set<Integer> set = new TreeSet<>();
         for(int i=0;i<nums.length;i++){
             if(nums[i]>0){
