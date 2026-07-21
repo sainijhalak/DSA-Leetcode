@@ -14,24 +14,17 @@
  * }
  */
 class Solution {
-    void veerTumBadheChle(TreeNode root,int t,TreeNode p){
-        if(root==null) return;
-        if(root.left!=null && root.left.val==t && root.left.left==null && root.left.right==null){
-            root.left=null;
-            veerTumBadheChle(p,t,p);
+    TreeNode ComplexityN(TreeNode root,int t){
+        if(root==null) return null;
+        root.left=ComplexityN(root.left,t);
+        root.right=ComplexityN(root.right,t);
+          if(root.val==t && root.left==null && root.right==null){
+            return null;
         }
-        if(root.right!=null && root.right.val==t && root.right.left==null && root.right.right==null){
-            root.right=null;
-            veerTumBadheChle(p,t,p);
-        }
-        veerTumBadheChle(root.left,t,p);
-        veerTumBadheChle(root.right,t,p);
+        return root;
     }
     public TreeNode removeLeafNodes(TreeNode root, int target) {
-        veerTumBadheChle(root,target,root);
-        if(root.left==null && root.right==null && root.val==target) {
-            root=null;
-        }
+        root=ComplexityN(root,target);
         return root;
     }
 }
