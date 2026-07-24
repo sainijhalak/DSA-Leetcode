@@ -1,6 +1,6 @@
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        // Step 1: Saare values uthao
+       
         List<Integer> values = new ArrayList<>();
         
         for (ListNode list : lists) {
@@ -11,10 +11,10 @@ class Solution {
             }
         }
         
-        // Step 2: Sort karo
+        
         Collections.sort(values);
         
-        // Step 3: Nayi list banao
+      
         ListNode dummy = new ListNode(0);
         ListNode current = dummy;
         
