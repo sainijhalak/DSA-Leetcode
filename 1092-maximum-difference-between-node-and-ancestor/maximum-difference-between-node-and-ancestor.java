@@ -1,27 +1,38 @@
 class Solution {
     static int ans;
 
-    int[] minMax(TreeNode temp) {
-        if (temp == null) {
-            return new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE};
-        }
+    int minnikalladle(TreeNode temp, int min) {
+        if (temp == null) return min;
 
-        int[] left = minMax(temp.left);
-        int[] right = minMax(temp.right);
+        min = Math.min(min, temp.val);
 
-        int min = Math.min(temp.val, Math.min(left[0], right[0]));
-        int max = Math.max(temp.val, Math.max(left[1], right[1]));
+        int leftMin = minnikalladle(temp.left, min);
+        int rightMin = minnikalladle(temp.right, min);
 
-        return new int[]{min, max};
+        return Math.min(min, Math.min(leftMin, rightMin));
+    }
+
+    int maxnikalladle(TreeNode temp, int max) {
+        if (temp == null) return max;
+
+        max = Math.max(max, temp.val);
+
+        int leftMax = maxnikalladle(temp.left, max);
+        int rightMax = maxnikalladle(temp.right, max);
+
+        return Math.max(max, Math.max(leftMax, rightMax));
     }
 
     void Retrying(TreeNode root) {
         if (root == null) return;
 
-        int[] mm = minMax(root);
+        int leftmin = minnikalladle(root, root.val);
+        int rightmax = maxnikalladle(root, root.val);
 
-        ans = Math.max(ans, Math.abs(root.val - mm[0]));
-        ans = Math.max(ans, Math.abs(root.val - mm[1]));
+        int l = Math.abs(root.val - leftmin);
+        int r = Math.abs(root.val - rightmax);
+
+        ans = Math.max(ans, Math.max(l, r));
 
         Retrying(root.left);
         Retrying(root.right);
