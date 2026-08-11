@@ -26,13 +26,30 @@ class Solution {
     void Retrying(TreeNode root) {
         if (root == null) return;
 
-        int leftmin = minnikalladle(root, root.val);
-        int rightmax = maxnikalladle(root, root.val);
+        int leftmin;
+        int rightmin;
+        int leftmax;
+        int rightmax;
 
-        int l = Math.abs(root.val - leftmin);
-        int r = Math.abs(root.val - rightmax);
+        if (root.left != null) {
+            leftmin = minnikalladle(root.left, root.left.val);
+            leftmax = maxnikalladle(root.left, root.left.val);
 
-        ans = Math.max(ans, Math.max(l, r));
+            int l1 = Math.abs(root.val - leftmin);
+            int l2 = Math.abs(root.val - leftmax);
+
+            ans = Math.max(ans, Math.max(l1, l2));
+        }
+
+        if (root.right != null) {
+            rightmin = minnikalladle(root.right, root.right.val);
+            rightmax = maxnikalladle(root.right, root.right.val);
+
+            int r1 = Math.abs(root.val - rightmin);
+            int r2 = Math.abs(root.val - rightmax);
+
+            ans = Math.max(ans, Math.max(r1, r2));
+        }
 
         Retrying(root.left);
         Retrying(root.right);
