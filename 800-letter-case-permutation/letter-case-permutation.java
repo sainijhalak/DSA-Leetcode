@@ -9,14 +9,20 @@ class Solution {
         }
         else{
              char c=s.charAt(i);
-        char d=Character.toUpperCase(s.charAt(i));
+             char d;
+             if(Character.isUpperCase(c)){
+                d=Character.toLowerCase(s.charAt(i));
+             }
+             else{
+                 d=Character.toUpperCase(s.charAt(i));
+             }
+        
         letter(s,b+c,i+1,list);
         letter(s,b+d,i+1,list);
         }
     }
     public List<String> letterCasePermutation(String s) {
         List<String> list=new ArrayList<>();
-        s=s.toLowerCase();
         letter(s,"",0,list);
         return list;
     }
