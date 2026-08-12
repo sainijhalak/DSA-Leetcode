@@ -11,10 +11,6 @@ class Solution {
               while(map.get(nums[high])>k){
                 map.put(nums[low],map.get(nums[low])-1);
                  low++;
-                max=Math.max(max,high-low+1);
-                if(map.get(nums[low])==0){
-                    map.remove(nums[low]);
-                }
               }
               max=Math.max(max,high-low+1);
               high++;
