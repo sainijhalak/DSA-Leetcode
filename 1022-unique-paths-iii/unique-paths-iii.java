@@ -11,7 +11,7 @@ class Solution {
           
         }
         vis[i][j]=1;
-        k--;
+        if(grid[i][j]==0) k--;
         dfs(i+1,j,vis,grid,k);
         dfs(i-1,j,vis,grid,k);
         dfs(i,j-1,vis,grid,k);
@@ -27,14 +27,14 @@ class Solution {
           int k=0;
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
-                if(grid[i][j]!=-1) k++;
+                if(grid[i][j]==0) k++;
             }
         }
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
                 if(grid[i][j]==1){
                     int c=k;
-                      dfs(i,j,vis,grid,c-1);
+                      dfs(i,j,vis,grid,c);
                 }
             }
         }
