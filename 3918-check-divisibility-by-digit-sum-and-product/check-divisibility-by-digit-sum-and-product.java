@@ -9,10 +9,8 @@ class Solution {
             pro=pro*r;
             num=num/10;
         }
-        int s=sum+pro;
-        if(n%s==0){
-            return true;
-        }
+        
+        if(n%(sum+pro)==0) return true;
         return false;
     }
 }
