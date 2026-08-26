@@ -5,14 +5,11 @@ class Solution {
             list.add(s);
             return;
         }
-        for(int i=start;i<digits.length();i++){
-            if(digits.charAt(i)=='1'|| digits.charAt(i)=='#'|| digits.charAt(i)=='*') return;
-            String a=map.get(digits.charAt(i));
+       
+            String a=map.get(digits.charAt(start));
             for(int j=0;j<a.length();j++){
-                letterCombination(map,digits,i+1,s+a.charAt(j),len-1,list);
+                letterCombination(map,digits,start+1,s+a.charAt(j),len-1,list);
             }
-
-        }
 
     }
     public List<String> letterCombinations(String digits) {
