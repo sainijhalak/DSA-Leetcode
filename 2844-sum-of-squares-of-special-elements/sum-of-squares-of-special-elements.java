@@ -1,12 +1,12 @@
 class Solution {
     public int sumOfSquares(int[] nums) {
+        int sum=0;
         int n=nums.length;
-        int res=0;
         for(int i=0;i<nums.length;i++){
             if(n%(i+1)==0){
-                res=res+(nums[i]*nums[i]);
+                sum=sum+(nums[i]*nums[i]);
             }
         }
-        return res;
+        return sum;
     }
 }
